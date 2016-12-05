@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.reflect.Field;
-import java.util.stream.Collectors;
 
 import org.apache.tools.ant.BuildException;
 import org.apache.tools.ant.taskdefs.ExecuteWatchdog;
@@ -64,7 +63,13 @@ public class JStackJUnitTask extends JUnitTask
                     Process p = pb.start();
                     try (BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream())))
                     {
-                        System.out.println(br.lines().collect(Collectors.joining("\n")));
+                        StringBuilder sb = new StringBuilder();
+                        String line;
+                        while((line = br.readLine()) != null)
+                        {
+                            sb.append(line).append("\n");
+                        }
+                        System.out.println(sb.toString());
                     }
                 }
                 catch (IOException e)
