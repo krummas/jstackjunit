@@ -1,4 +1,4 @@
-<project name="JStackJUnit" basedir="." default="jar">
+<project name="jstackjunit" basedir="." default="jar">
   <property name="src.dir"     value="src"/>
   <property name="build.dir"   value="build"/>
   <property name="classes.dir" value="${build.dir}/classes"/>
@@ -6,6 +6,7 @@
   <property name="lib.dir"     value="lib"/>
   <property name="ant.build.javac.source" value="1.7"/>
   <property name="ant.build.javac.target" value="1.7"/>
+  <property name="version" value="0.0.1"/>
 
   <path id="classpath">
     <fileset dir="${lib.dir}" includes="**/*.jar"/>
@@ -22,6 +23,6 @@
 
   <target name="jar" depends="compile">
     <mkdir dir="${jar.dir}"/>
-    <jar destfile="${jar.dir}/${ant.project.name}.jar" basedir="${classes.dir}" />
+    <jar destfile="${jar.dir}/${ant.project.name}-${version}.jar" basedir="${classes.dir}" />
   </target>
 </project>
